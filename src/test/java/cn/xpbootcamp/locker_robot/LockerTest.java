@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LockerTest {
 
     @Test
-    public void should_store_bag_when_locker_has_available_space(){
+    public void should_store_bag_when_locker_has_available_space() {
         Locker locker = new Locker(1);
         Bag bag = new Bag();
 
@@ -15,7 +15,7 @@ public class LockerTest {
     }
 
     @Test
-    public void should_store_bag_when_locker_has_available_spece_and_return_receipt(){
+    public void should_store_bag_when_locker_has_available_spece_and_return_receipt() {
         Locker locker = new Locker(1);
         Bag bag = new Bag();
 
@@ -25,7 +25,7 @@ public class LockerTest {
     }
 
     @Test
-    public void should_store_two_bags_when_locker_has_available_spece_and_return_receipt(){
+    public void should_store_two_bags_when_locker_has_available_spece_and_return_receipt() {
         Locker locker = new Locker(2);
         Bag bag_one = new Bag();
         Bag bag_two = new Bag();
@@ -37,7 +37,7 @@ public class LockerTest {
     }
 
     @Test
-    public void should_not_store_bag_when_locker_is_full(){
+    public void should_not_store_bag_when_locker_is_full() {
         Locker locker = new Locker(1);
         Bag bag_one = new Bag();
         Bag bag_two = new Bag();
@@ -53,7 +53,7 @@ public class LockerTest {
     }
 
     @Test
-    public void should_get_bag_when_receipt_is_valid(){
+    public void should_get_bag_when_receipt_is_valid() {
         Locker locker = new Locker(1);
         Bag bag = new Bag();
 
@@ -63,7 +63,7 @@ public class LockerTest {
     }
 
     @Test
-    public void should_get_correct_bag_when_receipt_is_valid(){
+    public void should_get_correct_bag_when_receipt_is_valid() {
         Locker locker = new Locker(1);
         Bag bag = new Bag();
 
@@ -75,7 +75,7 @@ public class LockerTest {
     }
 
     @Test
-    public void should_get_correct_bags_when_receipts_is_valid(){
+    public void should_get_correct_bags_when_receipts_is_valid() {
         Locker locker = new Locker(2);
         Bag bag_one = new Bag();
         Bag bag_two = new Bag();
@@ -88,6 +88,47 @@ public class LockerTest {
 
         assertEquals(bag_one, newBag_one);
         assertEquals(bag_two, newBag_two);
+    }
+
+    @Test
+    public void should_not_get_bag_when_receipt_is_invalid() {
+        Locker locker = new Locker(1);
+        Bag bag = new Bag();
+
+        Receipt receipt = locker.storeBag(bag);
+        Bag newBag = locker.getBag(receipt);
+        assertEquals(bag, newBag);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            locker.getBag(receipt);
+        });
+        String expectedMessage = "Invalid receipt";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+
+    }
+
+    @Test
+    public void should_not_get_bag_when_receipt_is_invalid_and_space_has_been_reused() {
+        Locker locker = new Locker(1);
+        Bag bag = new Bag();
+
+        Receipt receipt = locker.storeBag(bag);
+        Bag newBag = locker.getBag(receipt);
+        assertEquals(bag, newBag);
+
+        Bag bag_one = new Bag();
+        Receipt receipt_one = locker.storeBag(bag_one);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            locker.getBag(receipt);
+        });
+        String expectedMessage = "Invalid receipt";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+
+        assertEquals(bag_one, locker.getBag(receipt_one));
+
     }
 
 }
