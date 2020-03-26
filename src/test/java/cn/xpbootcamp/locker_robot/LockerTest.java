@@ -2,7 +2,7 @@ package cn.xpbootcamp.locker_robot;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LockerTest {
 
@@ -34,6 +34,22 @@ public class LockerTest {
         Receipt receipt_two = locker.store(bag_two);
         assertNotNull(receipt_one);
         assertNotNull(receipt_two);
+    }
+
+    @Test
+    public void should_not_store_bag_when_locker_is_full(){
+        Locker locker = new Locker(1);
+        Bag bag_one = new Bag();
+        Bag bag_two = new Bag();
+
+        Receipt receipt_one = locker.store(bag_one);
+        assertNotNull(receipt_one);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            locker.store(bag_two);
+        });
+        String expectedMessage = "Locker is full";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 
 }
