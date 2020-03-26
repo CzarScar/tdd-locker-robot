@@ -1,11 +1,9 @@
 package cn.xpbootcamp.locker_robot;
 
 public class Locker {
-    private int capacity;
     private Bag[] bagArray;
 
     public Locker(int capacity) {
-        this.capacity = capacity;
         this.bagArray = new Bag[capacity];
     }
 
