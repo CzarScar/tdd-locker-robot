@@ -71,7 +71,7 @@ public class LockerTest {
 
         Bag newBag = locker.getBag(receipt);
 
-        assertEquals(bag, newBag);
+        assertSame(bag, newBag);
     }
 
     @Test
@@ -86,8 +86,8 @@ public class LockerTest {
         Bag newBag_one = locker.getBag(receipt_one);
         Bag newBag_two = locker.getBag(receipt_two);
 
-        assertEquals(bag_one, newBag_one);
-        assertEquals(bag_two, newBag_two);
+        assertSame(bag_one, newBag_one);
+        assertSame(bag_two, newBag_two);
     }
 
     @Test
@@ -97,7 +97,7 @@ public class LockerTest {
 
         Receipt receipt = locker.storeBag(bag);
         Bag newBag = locker.getBag(receipt);
-        assertEquals(bag, newBag);
+        assertSame(bag, newBag);
 
         Exception exception = assertThrows(RuntimeException.class, () -> {
             locker.getBag(receipt);
@@ -115,7 +115,7 @@ public class LockerTest {
 
         Receipt receipt = locker.storeBag(bag);
         Bag newBag = locker.getBag(receipt);
-        assertEquals(bag, newBag);
+        assertSame(bag, newBag);
 
         Bag bag_one = new Bag();
         Receipt receipt_one = locker.storeBag(bag_one);
@@ -127,7 +127,7 @@ public class LockerTest {
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
 
-        assertEquals(bag_one, locker.getBag(receipt_one));
+        assertSame(bag_one, locker.getBag(receipt_one));
 
     }
 
