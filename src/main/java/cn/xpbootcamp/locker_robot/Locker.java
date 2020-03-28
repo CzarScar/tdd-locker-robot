@@ -16,8 +16,8 @@ public class Locker {
             throw new RuntimeException("Locker is full");
         }
         int available_position = 0;
-        for (int index = 0; index < bags.length; index++) {
-            if (null == bags[index] && null == receipts[index]) {
+        for (int index = 0; index < receipts.length; index++) {
+            if (null == receipts[index]) {
                 available_position = index;
                 break;
             }
