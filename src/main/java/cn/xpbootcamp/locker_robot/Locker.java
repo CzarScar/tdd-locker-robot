@@ -17,7 +17,7 @@ public class Locker {
         }
         int available_position = 0;
         for (int index = 0; index < bags.length; index++) {
-            if (null == bags[index]) {
+            if (null == bags[index] && null == receipts[index]) {
                 available_position = index;
                 break;
             }
@@ -31,10 +31,11 @@ public class Locker {
 
     public Bag getBag(Receipt receipt) {
         Bag bag = bags[receipt.getStore_position()];
-        if (null == bag || receipts[receipt.getStore_position()] != receipt) {
+        if (receipts[receipt.getStore_position()] != receipt) {
             throw new RuntimeException("Invalid receipt");
         }
         bags[receipt.getStore_position()] = null;
+        receipts[receipt.getStore_position()] = null;
         this.available_space += 1;
         return bag;
     }

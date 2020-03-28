@@ -131,4 +131,34 @@ public class LockerTest {
 
     }
 
+    @Test
+    public void should_get_receipt_when_store_empty_given_the_locker_has_available_space() {
+        Locker locker = new Locker(1);
+
+        Receipt receipt = locker.storeBag(null);
+
+        assertNotNull(receipt);
+    }
+
+    @Test
+    public void should_get_stored_empty_when_get_bag_given_valid_receipt() {
+        Locker locker = new Locker(1);
+
+        Receipt receipt = locker.storeBag(null);
+
+        assertSame(null, locker.getBag(receipt));
+    }
+
+    @Test
+    public void should_get_one_bag_and_one_stored_empty_when_get_bags_given_valid_receipts() {
+        Locker locker = new Locker(2);
+
+        Bag bag = new Bag();
+        Receipt receiptForEmpty = locker.storeBag(null);
+        Receipt receiptForBag = locker.storeBag(bag);
+
+        assertSame(null, locker.getBag(receiptForEmpty));
+        assertSame(bag, locker.getBag(receiptForBag));
+    }
+
 }
