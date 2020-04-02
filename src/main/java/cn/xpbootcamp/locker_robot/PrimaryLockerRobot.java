@@ -22,7 +22,7 @@ public class PrimaryLockerRobot {
             }
             return lockers[index].storeBag(bag);
         }
-        return null;
+        throw new RuntimeException("Lockers are all full");
     }
 
     public boolean lockerIsFull(Locker locker) {
