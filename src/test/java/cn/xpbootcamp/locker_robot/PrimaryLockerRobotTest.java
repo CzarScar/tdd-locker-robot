@@ -50,4 +50,35 @@ public class PrimaryLockerRobotTest {
 
         assertEquals(bag, primaryLockerRobot.getBag(receipt));
     }
+
+    @Test
+    public void should_not_get_bag_when_use_invalid_receipt_without_locker_info_given_store_a_bag(){
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(1,1);
+        Bag bag = new Bag();
+        primaryLockerRobot.storeBag(bag);
+
+        Receipt receipt = new Receipt(0);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            primaryLockerRobot.getBag(receipt);
+        });
+        String expectedMessage = "Invalid receipt";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    public void should_not_get_bag_when_use_invalid_receipt_with_locker_info_given_store_a_bag(){
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(1,1);
+        Bag bag = new Bag();
+        primaryLockerRobot.storeBag(bag);
+
+        Receipt receipt = new Receipt(0);
+        receipt.setStore_locker(0);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            primaryLockerRobot.getBag(receipt);
+        });
+        String expectedMessage = "Invalid receipt";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
 }
