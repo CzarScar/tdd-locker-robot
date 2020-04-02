@@ -22,6 +22,11 @@ public class PrimaryLockerRobotTest {
 
         assertTrue(primaryLockerRobot.lockerIsFull(primaryLockerRobot.getLockers()[0]));
         assertFalse(primaryLockerRobot.lockerIsFull(primaryLockerRobot.getLockers()[1]));
+
+        Bag bagTwo = new Bag();
+        primaryLockerRobot.storeBag(bagTwo);
+        assertTrue(primaryLockerRobot.lockerIsFull(primaryLockerRobot.getLockers()[0]));
+        assertTrue(primaryLockerRobot.lockerIsFull(primaryLockerRobot.getLockers()[1]));
     }
 
     @Test
