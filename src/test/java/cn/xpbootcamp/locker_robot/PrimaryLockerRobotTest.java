@@ -40,4 +40,14 @@ public class PrimaryLockerRobotTest {
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
+
+    @Test
+    public void should_get_bag_when_use_the_receipt_given_store_a_bag_and_got_a_receipt(){
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(1,1);
+        Bag bag = new Bag();
+
+        Receipt receipt = primaryLockerRobot.storeBag(bag);
+
+        assertEquals(bag, primaryLockerRobot.getBag(receipt));
+    }
 }

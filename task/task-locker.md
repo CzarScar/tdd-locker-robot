@@ -51,3 +51,7 @@ Receipt Valid or Invalid
     + Given I store the bag in the robots and get receipt
     + When I use the receipt
     + Then I can get the bag
+ * Invalid Receipts cannot get bag
+    + Given I store the bag in robot's locker
+    + When I use an invalid receipts
+    + Then I cannot get the bag
