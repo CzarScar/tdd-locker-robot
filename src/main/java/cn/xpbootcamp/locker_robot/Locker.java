@@ -11,6 +11,10 @@ public class Locker {
         this.available_space = capacity;
     }
 
+    public int getAvailable_space() {
+        return available_space;
+    }
+
     public Receipt storeBag(Bag bag) {
         if (0 == available_space) {
             throw new RuntimeException("Locker is full");
