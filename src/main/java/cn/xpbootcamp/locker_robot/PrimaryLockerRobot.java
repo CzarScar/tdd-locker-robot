@@ -21,17 +21,17 @@ public class PrimaryLockerRobot {
                 continue;
             }
             Receipt receipt =  lockers[index].storeBag(bag);
-            receipt.setStore_locker(index);
+            receipt.setStoredLocker(index);
             return receipt;
         }
         throw new RuntimeException("Lockers are all full");
     }
 
     public boolean lockerIsFull(Locker locker) {
-        return locker.getAvailable_space() == 0;
+        return locker.getAvailableSpace() == 0;
     }
 
     public Bag getBag(Receipt receipt) {
-        return lockers[receipt.getStore_locker()].getBag(receipt);
+        return lockers[receipt.getStoredLocker()].getBag(receipt);
     }
 }

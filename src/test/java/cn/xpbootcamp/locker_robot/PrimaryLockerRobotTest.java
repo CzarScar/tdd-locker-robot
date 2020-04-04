@@ -80,7 +80,7 @@ public class PrimaryLockerRobotTest {
         Receipt validReceipt = primaryLockerRobot.storeBag(bag);
 
         Receipt invalidReceipt = new Receipt(0);
-        invalidReceipt.setStore_locker(0);
+        invalidReceipt.setStoredLocker(0);
         Exception exception = assertThrows(RuntimeException.class, () -> {
             primaryLockerRobot.getBag(invalidReceipt);
         });

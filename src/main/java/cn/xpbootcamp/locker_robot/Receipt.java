@@ -1,22 +1,22 @@
 package cn.xpbootcamp.locker_robot;
 
 public class Receipt {
-    private int store_position;
-    private int store_locker;
+    private int storedPosition;
+    private int storedLocker;
 
-    public Receipt(int store_position) {
-        this.store_position = store_position;
+    public Receipt(int storedPosition) {
+        this.storedPosition = storedPosition;
     }
 
-    public int getStore_position() {
-        return store_position;
+    public int getStoredPosition() {
+        return storedPosition;
     }
 
-    public int getStore_locker() {
-        return store_locker;
+    public int getStoredLocker() {
+        return storedLocker;
     }
 
-    public void setStore_locker(int store_locker) {
-        this.store_locker = store_locker;
+    public void setStoredLocker(int storedLocker) {
+        this.storedLocker = storedLocker;
     }
 }
