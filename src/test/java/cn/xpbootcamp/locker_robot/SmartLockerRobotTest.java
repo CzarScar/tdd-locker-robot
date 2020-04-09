@@ -26,4 +26,21 @@ public class SmartLockerRobotTest {
         assertEquals(1,smartLockerRobot.getLockers()[0].getAvailableSpace());
         assertEquals(1,smartLockerRobot.getLockers()[1].getAvailableSpace());
     }
+
+    @Test
+    public void should_not_store_bag_when_store_a_bag_given_all_lockers_are_full_under_smart_locker_robot(){
+        SmartLockerRobot smartLockerRobot = new SmartLockerRobot(2,1);
+        Bag bag = new Bag();
+        Bag bagOne = new Bag();
+        Bag bagTwo = new Bag();
+        smartLockerRobot.storeBag(bagOne);
+        smartLockerRobot.storeBag(bagTwo);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            smartLockerRobot.storeBag(bag);
+        });
+        String expectedMessage = "Lockers are all full";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
 }

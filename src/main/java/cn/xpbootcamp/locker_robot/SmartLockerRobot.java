@@ -23,6 +23,9 @@ public class SmartLockerRobot {
                 storedLocker = index;
             }
         }
+        if(0 == maxAvailableSpace){
+            throw new RuntimeException("Lockers are all full");
+        }
         return this.lockers[storedLocker].storeBag(bag);
     }
 }
