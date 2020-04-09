@@ -63,5 +63,58 @@ public class SmartLockerRobotTest {
         assertSame(bag, smartLockerRobot.getBag(receipt));
     }
 
-    
+    @Test
+    public void should_not_get_bag_when_use_invalid_receipt_with_locker_info_given_store_bag_and_get_receipt(){
+        SmartLockerRobot smartLockerRobot = new SmartLockerRobot(2,2);
+        Bag bag = new Bag();
+        Receipt validReceipt = smartLockerRobot.storeBag(bag);
+
+        Receipt invalidReceiptWithLockerInfo = new Receipt(0);
+        invalidReceiptWithLockerInfo.setStoredLocker(0);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            smartLockerRobot.getBag(invalidReceiptWithLockerInfo);
+        });
+        String expectedMessage = "Invalid receipt";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+
+        assertSame(bag, smartLockerRobot.getBag(validReceipt));
+    }
+
+    @Test
+    public void should_not_get_bag_when_use_invalid_receipt_without_locker_info_given_store_bag_and_get_receipt(){
+        SmartLockerRobot smartLockerRobot = new SmartLockerRobot(2,2);
+        Bag bag = new Bag();
+        Receipt validReceipt = smartLockerRobot.storeBag(bag);
+
+        Receipt invalidReceiptWithLockerInfo = new Receipt(0);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            smartLockerRobot.getBag(invalidReceiptWithLockerInfo);
+        });
+        String expectedMessage = "Invalid receipt";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+
+        assertSame(bag, smartLockerRobot.getBag(validReceipt));
+    }
+
+    @Test
+    public void should_not_get_bag_when_use_invalid_receipt_with_locker_position_given_store_bag_and_get_receipt(){
+        SmartLockerRobot smartLockerRobot = new SmartLockerRobot(2,2);
+        Bag bag = new Bag();
+        Receipt validReceipt = smartLockerRobot.storeBag(bag);
+
+        Receipt invalidReceiptWithLockerInfo = new Receipt(0);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            smartLockerRobot.getBag(invalidReceiptWithLockerInfo);
+        });
+        String expectedMessage = "Invalid receipt";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+
+        assertSame(bag, smartLockerRobot.getBag(validReceipt));
+    }
 }

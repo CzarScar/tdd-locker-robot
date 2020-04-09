@@ -28,11 +28,7 @@
     + Given I store the bag in robot's locker
     + When I use an invalid receipts without locker info
     + Then I cannot get the bag
- * Invalid Receipts with locker position position cannot get bag
+ * Invalid Receipts with locker position cannot get bag
     + Given I store the bag in robot's locker
     + When I use an invalid receipts with locker position
-    + Then I cannot get the bag
- * Invalid Receipts without locker position position cannot get bag
-    + Given I store the bag in robot's locker
-    + When I use an invalid receipts without locker position
     + Then I cannot get the bag
