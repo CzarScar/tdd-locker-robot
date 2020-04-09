@@ -53,4 +53,15 @@ public class SmartLockerRobotTest {
         assertEquals(1, smartLockerRobot.getLockers()[0].getAvailableSpace());
         assertEquals(2, smartLockerRobot.getLockers()[1].getAvailableSpace());
     }
+
+    @Test
+    public void should_get_bag_when_use_valid_receipt_given_store_a_bag_and_return_receipt(){
+        SmartLockerRobot smartLockerRobot = new SmartLockerRobot(2,2);
+        Bag bag = new Bag();
+        Receipt receipt = smartLockerRobot.storeBag(bag);
+
+        assertSame(bag, smartLockerRobot.getBag(receipt));
+    }
+
+    
 }
