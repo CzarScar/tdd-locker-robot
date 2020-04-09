@@ -43,4 +43,14 @@ public class SmartLockerRobotTest {
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
+
+    @Test
+    public void should_store_bag_in_first_locker_when_store_a_bag_given_all_lockers_have_same_available_space_under_smart_locker_robot(){
+        SmartLockerRobot smartLockerRobot = new SmartLockerRobot(2,2);
+        Bag bag = new Bag();
+        smartLockerRobot.storeBag(bag);
+
+        assertEquals(1, smartLockerRobot.getLockers()[0].getAvailableSpace());
+        assertEquals(2, smartLockerRobot.getLockers()[1].getAvailableSpace());
+    }
 }
