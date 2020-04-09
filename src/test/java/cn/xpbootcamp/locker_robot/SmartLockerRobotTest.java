@@ -2,7 +2,7 @@ package cn.xpbootcamp.locker_robot;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SmartLockerRobotTest {
 
@@ -12,5 +12,18 @@ public class SmartLockerRobotTest {
         Bag bag = new Bag();
         Receipt receipt = smartLockerRobot.storeBag(bag);
         assertNotNull(receipt);
+    }
+
+    @Test
+    public void should_store_bag_in_more_available_space_locker_when_store_a_bag_given_lockers_under_smart_locker_robot(){
+        SmartLockerRobot smartLockerRobot = new SmartLockerRobot(2,2);
+        Bag bagOne = new Bag();
+        Bag bagTwo = new Bag();
+        Receipt receiptOne = smartLockerRobot.storeBag(bagOne);
+        assertEquals(1,smartLockerRobot.getLockers()[0].getAvailableSpace());
+        assertEquals(2,smartLockerRobot.getLockers()[1].getAvailableSpace());
+        Receipt receiptTwo = smartLockerRobot.storeBag(bagTwo);
+        assertEquals(1,smartLockerRobot.getLockers()[0].getAvailableSpace());
+        assertEquals(1,smartLockerRobot.getLockers()[1].getAvailableSpace());
     }
 }

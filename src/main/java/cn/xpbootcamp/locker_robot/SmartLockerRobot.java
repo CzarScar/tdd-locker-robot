@@ -9,7 +9,20 @@ public class SmartLockerRobot {
         }
     }
 
+    public Locker[] getLockers() {
+        return lockers;
+    }
+
     public Receipt storeBag(Bag bag) {
-        return this.lockers[0].storeBag(bag);
+        int maxAvailableSpace = 0;
+        int storedLocker = 0;
+        for(int index = 0; index < this.lockers.length; index++){
+            int lockerAvailableSpace = this.lockers[index].getAvailableSpace();
+            if (lockerAvailableSpace > maxAvailableSpace){
+                maxAvailableSpace = lockerAvailableSpace;
+                storedLocker = index;
+            }
+        }
+        return this.lockers[storedLocker].storeBag(bag);
     }
 }
