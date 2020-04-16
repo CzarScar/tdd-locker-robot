@@ -2,8 +2,8 @@ package cn.xpbootcamp.locker_robot;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SuperLockerRobotTest {
 
@@ -40,5 +40,22 @@ public class SuperLockerRobotTest {
 
         assertEquals(1,superLockerRobot.getLockers()[0].getAvailableSpace());
         assertEquals(2,superLockerRobot.getLockers()[1].getAvailableSpace());
+    }
+
+    @Test
+    public void should_not_store_bag_when_store_a_bag_given_super_locker_robot_with_all_lokers_are_full(){
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(new int[]{1,1});
+        Bag bagOne = new Bag();
+        Bag bagTwo = new Bag();
+        Bag bagThree = new Bag();
+        superLockerRobot.storeBag(bagOne);
+        superLockerRobot.storeBag(bagTwo);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            superLockerRobot.storeBag(bagThree);
+        });
+        String expectedMessage = "Lockers are all full";
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage,actualMessage);
     }
 }

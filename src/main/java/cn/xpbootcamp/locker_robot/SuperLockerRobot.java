@@ -21,6 +21,9 @@ public class SuperLockerRobot {
                 higherVacancyRateLockerIndex = index;
             }
         }
+        if(0.0 == vacancyRate){
+            throw new RuntimeException("Lockers are all full");
+        }
         return lockers[higherVacancyRateLockerIndex].storeBag(bag);
     }
 
