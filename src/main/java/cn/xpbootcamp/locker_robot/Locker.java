@@ -3,16 +3,17 @@ package cn.xpbootcamp.locker_robot;
 public class Locker {
     private Bag[] bags;
     private Receipt[] receipts;
-    private int available_space;
+    private int availableSpace;
+    private double vacancyRate;
 
     public Locker(int capacity) {
         this.bags = new Bag[capacity];
         this.receipts = new Receipt[capacity];
-        this.available_space = capacity;
+        this.availableSpace = capacity;
     }
 
     public Receipt storeBag(Bag bag) {
-        if (0 == available_space) {
+        if (0 == availableSpace) {
             throw new RuntimeException("Locker is full");
         }
         int available_position = 0;
@@ -25,7 +26,7 @@ public class Locker {
         Receipt receipt = new Receipt(available_position);
         receipts[available_position] = receipt;
         bags[available_position] = bag;
-        this.available_space -= 1;
+        this.availableSpace -= 1;
         return receipt;
     }
 
@@ -36,7 +37,15 @@ public class Locker {
         }
         bags[receipt.getStore_position()] = null;
         receipts[receipt.getStore_position()] = null;
-        this.available_space += 1;
+        this.availableSpace += 1;
         return bag;
+    }
+
+    public int getAvailableSpace() {
+        return availableSpace;
+    }
+
+    public double getVacancyRate() {
+        return (double)this.availableSpace/(this.availableSpace+this.receipts.length);
     }
 }
