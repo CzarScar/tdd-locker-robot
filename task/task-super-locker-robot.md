@@ -25,7 +25,17 @@
     * When get a bag from super locker robot
     * Then I can get the bag
 
-* Super Locker cannot get bag using invalid receipt
-    * Given there is an invalid receipt
+* Super Locker cannot get bag using invalid receipt without locker info
+    * Given there is an invalid receipt without locker info
+    * When get a bag from super locker robot
+    * Then I cannot get the bag
+    
+* Super Locker cannot get bag using invalid receipt with locker info
+    * Given there is an invalid receipt with locker info
+    * When get a bag from super locker robot
+    * Then I cannot get the bag
+    
+* Super Locker cannot get bag using reused receipt with locker info
+    * Given there is an reused receipt
     * When get a bag from super locker robot
     * Then I cannot get the bag

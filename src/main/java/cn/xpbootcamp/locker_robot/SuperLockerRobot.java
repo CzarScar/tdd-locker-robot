@@ -34,6 +34,9 @@ public class SuperLockerRobot {
     }
 
     public Bag getBag(Receipt receipt) {
+        if(receipt.getLockerInfo() > this.lockers.length){
+            throw new RuntimeException("Invalid receipt");
+        }
         return lockers[receipt.getLockerInfo()].getBag(receipt);
     }
 }
