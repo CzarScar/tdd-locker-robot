@@ -24,10 +24,16 @@ public class SuperLockerRobot {
         if(0.0 == vacancyRate){
             throw new RuntimeException("Lockers are all full");
         }
-        return lockers[higherVacancyRateLockerIndex].storeBag(bag);
+        Receipt receipt = lockers[higherVacancyRateLockerIndex].storeBag(bag);
+        receipt.setLockerInfo(higherVacancyRateLockerIndex);
+        return receipt;
     }
 
     public Locker[] getLockers() {
         return lockers;
+    }
+
+    public Bag getBag(Receipt receipt) {
+        return lockers[receipt.getLockerInfo()].getBag(receipt);
     }
 }

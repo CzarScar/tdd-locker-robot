@@ -58,4 +58,14 @@ public class SuperLockerRobotTest {
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage,actualMessage);
     }
+
+    @Test
+    public void should_get_bag_when_using_valid_receipt_given_store_bag_in_super_locker_robot() {
+        SuperLockerRobot superLockerRobot = new SuperLockerRobot(new int[]{1, 1});
+        Bag bag = new Bag();
+
+        Receipt validReceipt = superLockerRobot.storeBag(bag);
+
+        assertSame(bag, superLockerRobot.getBag(validReceipt));
+    }
 }
